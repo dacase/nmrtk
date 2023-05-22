@@ -1,0 +1,32 @@
+# -*- Mode: makefile -*-
+# Copyright (c) 2005 Matthew Wall, all rights reserved
+# makefile variables for compiling on unix environments
+# -----------------------------------------------------------------------------
+
+LIB   =libga.a
+
+### Set these directories to whatever is appropriate for your system.  These 
+### are used only if you do a 'make install'.  They specify where the library
+### and header files should be installed.
+DESTDIR=/usr/local
+HDR_DEST_DIR=$(DESTDIR)/include
+LIB_DEST_DIR=$(DESTDIR)/lib
+
+
+### Make sure that these are ok for your operating system.
+MKDEPEND    = makedepend
+MKDIR       = mkdir -p
+CP          = cp
+RM          = rm -f
+
+### Uncomment a block from the list below appropriate for the compiler and 
+### operating system on which you are compiling.
+
+# gcc3, gcc4
+CXX         = g++
+CXXFLAGS    = -g -Wall -fpermissive
+LD          = g++ -w
+AR          = ar rv
+INSTALL     = install -c
+RANLIB      = echo no ranlib
+
