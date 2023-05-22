@@ -338,51 +338,7 @@ void MultiFitGA::calcNMRFromEnsemble(GARealGenome& genome)
 	      currCalcNMR[inmr] += probFactors[iconfs]*nmrConfInp[iconfs][inmr];
 	    }
 	}
-	// do the special scaling for wtTAR RDCs:
 
-	float lscaleden = 0.0;
-	float lscalenum = 0.0;
-	for (unsigned inmr = 0; inmr < 35; inmr++) {
-	   lscaleden =+ currCalcNMR[inmr] * currCalcNMR[inmr];
-	   lscalenum =+ currCalcNMR[inmr] * nmrExpInp[inmr];
-	}
-	float lscale = lscalenum/lscaleden;
-	for (unsigned inmr = 0; inmr < 35; inmr++) {
-	   currCalcNMR[inmr] *= lscale;
-	}
-
-	lscaleden = 0.0;
-	lscalenum = 0.0;
-	for (unsigned inmr = 35; inmr < 74; inmr++) {
-	   lscaleden =+ currCalcNMR[inmr] * currCalcNMR[inmr];
-	   lscalenum =+ currCalcNMR[inmr] * nmrExpInp[inmr];
-	}
-	lscale = lscalenum/lscaleden;
-	for (unsigned inmr = 35; inmr < 74; inmr++) {
-	   currCalcNMR[inmr] *= lscale;
-	}
-
-	lscaleden = 0.0;
-	lscalenum = 0.0;
-	for (unsigned inmr = 74; inmr < 108; inmr++) {
-	   lscaleden =+ currCalcNMR[inmr] * currCalcNMR[inmr];
-	   lscalenum =+ currCalcNMR[inmr] * nmrExpInp[inmr];
-	}
-	lscale = lscalenum/lscaleden;
-	for (unsigned inmr = 74; inmr < 108; inmr++) {
-	   currCalcNMR[inmr] *= lscale;
-	}
-
-	lscaleden = 0.0;
-	lscalenum = 0.0;
-	for (unsigned inmr = 108; inmr < 143; inmr++) {
-	   lscaleden =+ currCalcNMR[inmr] * currCalcNMR[inmr];
-	   lscalenum =+ currCalcNMR[inmr] * nmrExpInp[inmr];
-	}
-	lscale = lscalenum/lscaleden;
-	for (unsigned inmr = 108; inmr < 143; inmr++) {
-	   currCalcNMR[inmr] *= lscale;
-	}
 
     }
   else if (randomMethod ==1)
