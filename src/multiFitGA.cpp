@@ -42,11 +42,14 @@ MultiFitGA::MultiFitGA(string inputFile)
   istringstream ssin;
   while( getline(infoFile, linein))
     {
+      cout << linein << endl;
       ssin.clear();
       ssin.str(linein);
       ssin >> lineHead; 
       if (lineHead == "#")
 	{continue;}
+      else if (lineHead == "populationSize:")
+	{ ssin >> populationSize; }
       else if (lineHead == "gaSteps:")
 	{ ssin >> gaSteps; }
       else if (lineHead == "nPrints:" )
@@ -185,12 +188,12 @@ void MultiFitGA::GeneticAlgorithmFit()
   GASimpleGA ga(genome);  
   ga.minimize();                    // by default we want to minimize the objective
   ga.scaling(scale);                // set the scaling method to our sharing
-  ga.populationSize(25);            // how many individuals in the population
+  ga.populationSize(populationSize); // how many individuals in the population
   ga.nGenerations(gaSteps);         // number of generations to evolve
   ga.pMutation(0.001);              // likelihood of mutating new offspring
   ga.pCrossover(0.9);               // likelihood of crossing over parents
   ga.scoreFilename("score.out");    // name of file for scores
-  ga.scoreFrequency(10);            // keep the scores of every 10 generations
+  ga.scoreFrequency(1000);        // keep the scores of every 1000 generations
   ga.flushFrequency(50);            // specify how often to write the score to disk
   ga.selectScores(GAStatistics::AllScores);
   ga.initialize();
