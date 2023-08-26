@@ -9,7 +9,11 @@ package as shown below. For other customized installation, users need to go
 through the instructions under corresponding packages.
 
 # Install GSL lib 
-The GSL lib can be downloaded from the                                      
+
+On Ubuntu, simply type "sudo apt-get install libgsl-dev".  Similar commands
+probably work on other Linux distributions.
+
+Or, the GSL lib can be downloaded from the                                      
 [webpage](https://www.gnu.org/software/gsl/). Although the tested versions  
 are 2.6 and 1.14, other versions should work well. To install GSL, please   
 follow the steps as listed below:                                           
@@ -30,7 +34,11 @@ following commands.
     `make install` 
 
 # Install GAlib
-The 2.4.7 version of [GAlib](http://web.mit.edu/galib/www/GAlib.html) has
+
+On Ubuntu, simply type "sudo apt-get install libga-dev".  Similar commands
+probably work on other Linux distributions.
+
+Or, the 2.4.7 version of [GAlib](http://web.mit.edu/galib/www/GAlib.html) has
 been included in this NMRTK package. Brief instruction on compiling and
 installing is listed as below:
 
@@ -55,18 +63,10 @@ code, such as
 
 # Install NMRTK
 
-Now you should be able to find a few new folders under NMRTK package such as
-`include`, `lib`, `bin`, and `share` for GSL and Galib. The required libs by
-NMRTK are installed under `lib`. The last part of installation is summarized
-as below:
-
-1) Change to the `src` folder of NMRTK and set the `BASEDIR` variable in
-`Makefile` to the NMR package folder such as
+1) Change to the `src` folder of NMRTK and set the `BASEDIR`, `GALIBS` and
+ `GSLLIBS`  variables in `Makefile` to match your system
    
-   `BASEDIR=$(HOME)/software/nmrtk_git`
-
 2) run `make all` to compile and install NMRTK. 
 
 The related executable commands can be found under the `bin` folder of NMR
-package. Please note that if GSL and GAlib are installed other than the
-NMRTK folder, the `Makefile` should be modified to fit those changes.
+package.
