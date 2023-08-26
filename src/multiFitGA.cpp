@@ -26,6 +26,10 @@ int  MultiFitGA::randomMethod;
 MultiFitGA::MultiFitGA(string inputFile)
 {
 
+  // some defaults:  (maybe add more later)
+  pMutation = 0.001;
+  pCrossover = 0.9;
+
   // input the parameters to initialize fitting 
   ifstream infoFile;
   infoFile.open(inputFile.data(),ios::in); 
@@ -50,6 +54,10 @@ MultiFitGA::MultiFitGA(string inputFile)
 	{continue;}
       else if (lineHead == "populationSize:")
 	{ ssin >> populationSize; }
+      else if (lineHead == "pMutation:")
+	{ ssin >> pMutation; }
+      else if (lineHead == "pCrossover:")
+	{ ssin >> pCrossover; }
       else if (lineHead == "gaSteps:")
 	{ ssin >> gaSteps; }
       else if (lineHead == "nPrints:" )
@@ -190,8 +198,8 @@ void MultiFitGA::GeneticAlgorithmFit()
   ga.scaling(scale);                // set the scaling method to our sharing
   ga.populationSize(populationSize); // how many individuals in the population
   ga.nGenerations(gaSteps);         // number of generations to evolve
-  ga.pMutation(0.001);              // likelihood of mutating new offspring
-  ga.pCrossover(0.9);               // likelihood of crossing over parents
+  ga.pMutation(pMutation);          // likelihood of mutating new offspring
+  ga.pCrossover(pCrossover);        // likelihood of crossing over parents
   ga.scoreFilename("score.out");    // name of file for scores
   ga.scoreFrequency(1000);        // keep the scores of every 1000 generations
   ga.flushFrequency(50);            // specify how often to write the score to disk
@@ -226,7 +234,7 @@ void MultiFitGA::GeneticAlgorithmFit()
       ga.step();
       istep++; 
 
-      if (istep%nPrints == 0 ) cout << " GA step = " << istep << " best R factor = " << bestRfactor << endl;
+      if (istep%nPrints == 0 ) cout << " GA step = " << istep << " best Q factor = " << bestRfactor << endl;
       if (bestRfactor < minError) 
 	{
 	  cout << " Find the solution with the best error " << bestRfactor << " in GA step " << istep << endl; 

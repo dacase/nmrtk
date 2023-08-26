@@ -65,6 +65,7 @@ private:
 
   unsigned long  gaSteps;                 // total number of Monte Carlo steps
   unsigned long  populationSize;          // individuals in the population
+  float pMutation, pCrossover;            // GA parameters
   unsigned int nPrints;                   // the number of GA steps for printing on screen 
   unsigned int gaSeed;                    // seed for the random number generator 
   double minError;                        // if the minError is reached, then the program stops      
