@@ -5,9 +5,10 @@
 ############################################################################
 
 
-#####################################################################################
-##  Definitions of Pathes; Change as Needed for Local Site                         ##
-#####################################################################################
+##############################################################################
+##  Definitions of Pathes; Change as Needed for Local Site                  ##
+##    In particular, BASEDIR, GALIBS, and GSLLIBS may need to be set        ##
+##############################################################################
 #
 # For simplicity, the installed folder is assumed to be the folder of nmrtk package 
 #
@@ -19,13 +20,11 @@ MYLIBS=$(BASEDIR)/lib
 MYBINS=$(BASEDIR)/bin
 
 # For Genetic Algrithms Libs
-# For simplicity, the GAlib is assume to be installed under the nmrtk package 
 #
 # GAINCS=$(MYINCS)
 GALIBS=/usr/lib/x86_64-linux-gnu
 
 # For GNU Scientific Libs
-# For simplicity, the GSL is assume to be installed under the nmrtk package
 # 
 # GSLINCS=$(MYINCS)
 # GSLLIBS=$(MYLIBS)
@@ -33,10 +32,6 @@ GALIBS=/usr/lib/x86_64-linux-gnu
 
 # For C++  libs
 # Set up if the related C++ libs can not be found automatically 
-#
-#CPPINCS= -I/usr/include/c++/4.1.2  -I/usr/include/c++/4.1.2/x86_64-redhat-linux
-CPPINCS=
-#CPPLIBS= -L/usr/lib/gcc/x86_64-redhat-linux/4.1.1 -L/usr/lib/gcc/x86_64-redhat-linux/3.4.6 
 CPPLIBS= 
 
 # put all inc, src, and libs togather
