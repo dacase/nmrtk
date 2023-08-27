@@ -24,6 +24,9 @@ map-restrained langevin dynamics and NMR:  Application to Pin
 1](http://doi.org/10.1021/acs.jcim.8b00194)," J. Mol. Biol. 430, 2164
 (2018).
 
+The principal author of the codes is Junchao Xia; David Case did some code
+renovation and organization for this distribution.
+
 # Installation Instructions
 
 Currently NMRTK only supports Linux platform and requires installing a      
