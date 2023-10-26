@@ -1,7 +1,7 @@
 # Introduction 
 
 The first step for installing NMRTK is cloning or obtaining the source code
-from gitlab.  NMRTK also requires GNU Scientific Library (GSL) and Genetic
+from github.  NMRTK also requires GNU Scientific Library (GSL) and Genetic
 Algorithms Library (GAlib) from MIT.  Both of them can be installed into
 Linux system-widely (such as /usr/local). For users without administration
 permission, it is more convenient to install both of them under the NMRTK
@@ -53,7 +53,7 @@ folder such as
 3) Add `-fpermissive` option to the `CXXFLAGS` variable to allow old C++
 code, such as
    
-    `CXXFLAGS    = -g -Wall -fpermissive` 
+    `CXXFLAGS    = -O3 -Wall -fpermissive` 
     
 4) Compile and install GAlib by two commands as below:
    
@@ -64,9 +64,13 @@ code, such as
 # Install NMRTK
 
 1) Change to the `src` folder of NMRTK and set the `BASEDIR`, `GALIBS` and
- `GSLLIBS`  variables in `Makefile` to match your system
+ `GSLLIBS`  variables in `Makefile` (for sudo install) or `Makefile_local` 
+ (for customized install) to match your system
    
-2) run `make all` to compile and install NMRTK. 
+2) if you installed GSL lib and GAlib using sudo command, run `make all` to compile and install NMRTK. 
+
+3) Or if installed GSL lib and GAlib in a customized way, run `make all -f Makefile_local` 
+   to compile and install NMRTK. 
 
 The related executable commands can be found under the `bin` folder of NMR
 package.
