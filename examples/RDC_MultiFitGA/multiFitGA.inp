@@ -1,6 +1,9 @@
 #
 #  input file for the GeneticAlgorithmFit to find multi-structure solution from RDC data      
 #
+populationSize: 25            // how many individuals in the population
+pMutation: 0.001              // likelihood of mutating new offspring 
+pCrossover: 0.9               // likelihood of crossing over parents
 gaSteps: 1000000              // maximum number of Genetic steps
 nPrints: 1000                 // number of steps for printing
 gaSeed:  11234                // seed for GA random number generator
