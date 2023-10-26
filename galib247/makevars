@@ -8,7 +8,7 @@ LIB   =libga.a
 ### Set these directories to whatever is appropriate for your system.  These 
 ### are used only if you do a 'make install'.  They specify where the library
 ### and header files should be installed.
-DESTDIR=/usr/local
+DESTDIR=$(HOME)/software/nmrtk_git
 HDR_DEST_DIR=$(DESTDIR)/include
 LIB_DEST_DIR=$(DESTDIR)/lib
 
@@ -24,7 +24,7 @@ RM          = rm -f
 
 # gcc3, gcc4
 CXX         = g++
-CXXFLAGS    = -g -Wall -fpermissive
+CXXFLAGS    = -O3 -Wall -fpermissive 
 LD          = g++ -w
 AR          = ar rv
 INSTALL     = install -c
