@@ -21,14 +21,7 @@ MYBINS=$(BASEDIR)/bin
 
 # For Genetic Algrithms Libs
 #
-# GAINCS=$(MYINCS)
 GALIBS=/usr/lib/x86_64-linux-gnu
-
-# For GNU Scientific Libs
-# 
-# GSLINCS=$(MYINCS)
-# GSLLIBS=$(MYLIBS)
-# GSLLIBNAME=libgsl.la
 
 # For C++  libs
 # Set up if the related C++ libs can not be found automatically 
@@ -41,7 +34,6 @@ CC=g++
 INCS= $(CPPINCS) -I$(GAINCS) -I$(GSLINCS) -I$(MYINCS)
 LIBS= $(CPPLIBS) -L$(GALIBS) -L$(GSLLIBS) -L$(MYLIBS)
 CPPFLAGS=  -O3 -fpermissive -Wall $(INCS) $(LIBS) 
-#CPPFLAGS= -g -Wall -fpermissive $(INCS) $(LIBS) 
 
 LDFLAGS=  -lstdc++ -lga -lgsl -lgslcblas -lm
 
@@ -87,7 +79,9 @@ EXOBJS= multiFitMC.o \
 all: $(EXOBJS) $(EXES) install
 
 bin: $(EXES)
-install: 
+install:
+	mkdir $(BASEDIR)	
+	mkdir $(MYBINS) 
 	cp $(EXES) $(MYBINS)/
 $(EXOBJS):
 	$(CC) $(CPPFLAGS) -c $*.cpp
@@ -112,6 +106,7 @@ S2MultiFit: S2MultiFit.o
 	$(CC) $(CPPFLAGS) -o S2MultiFit S2MultiFit.o $(LDFLAGS)
 
 clean:
+	rm -rf $(BASEDIR)
 	rm -f *.o $(EXES)
 
 #include depend
