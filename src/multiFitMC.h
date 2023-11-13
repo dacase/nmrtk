@@ -47,7 +47,7 @@ public:
 private:
 
   unsigned long  MCSteps;                 // total number of Monte Carlo steps
-  unsigned int nprints;                   // the number of MC steps for printing on screen 
+  unsigned int nPrints;                   // the number of MC steps for printing on screen
   unsigned int MCSeed;                    // seed for the random number generator 
   double minError;                        // if the minError is reached, then the program stops      
   

@@ -12,7 +12,7 @@ isRandomErr: 1                // add random noise to Exp NMR data > 0 for Yes
 nmrSeed: 15497                // seed for generating random errors for NMR data 
 sigmaErr: 0.1                 // variance of random noise of NMR data 
 nmrExpFile: RDCs_exp.dat      // file store experimental NMR data
-nmrPoints:  15                // total number of NMR data points
+numNMRPoints:  15             // total number of NMR data points
 nmrConfFile: RDCs_sorted.dat  // pre-calculated nmr data from unique structures
 numConfs:  1026               // total number of unique structures 
 rankCtrl: R                   // rank control, 'D': RMSD, 'N': normalized RMSD, "R": R factor

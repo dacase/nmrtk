@@ -74,7 +74,7 @@ MultiFitGA::MultiFitGA(string inputFile)
 	{ ssin >> sigmaErr; }
       else if (lineHead == "nmrExpFile:")
 	{ ssin >> nmrExpFile; }
-      else if (lineHead == "nmrPoints:")
+      else if (lineHead == "numNMRPoints:")
 	{ ssin >> numNMRPoints; }
       else if (lineHead == "nmrConfFile:")
 	{ ssin >> nmrConfFile; }

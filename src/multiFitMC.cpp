@@ -43,15 +43,15 @@ MultiFitMC::MultiFitMC(string inputFile)
 	{continue;}
       else if (lineHead == "MCSteps:")
 	{ ssin >> MCSteps; }
-      else if (lineHead == "nprints:" )
-	{ ssin >> nprints; }
+      else if (lineHead == "nPrints:" )
+	{ ssin >> nPrints; }
       else if (lineHead == "MCSeed:" )
 	{ ssin >> MCSeed; }
       else if (lineHead == "minError:" )
 	{ ssin >> minError; }
       else if (lineHead == "nmrExpFile:")
 	{ ssin >> nmrExpFile; }
-      else if (lineHead == "nmrPoints:")
+      else if (lineHead == "numNMRPoints:")
 	{ ssin >> numNMRPoints; }
       else if (lineHead == "nmrConfFile:")
 	{ ssin >> nmrConfFile; }
@@ -216,7 +216,7 @@ void MultiFitMC::MonteCarloFit()
 	  
 	}
 
-      if (istep%nprints == 0 ) cout << " MC step = " << istep << " best R factor = " << bestRfactor << endl;
+      if (istep % nPrints == 0 ) cout << " MC step = " << istep << " best R factor = " << bestRfactor << endl;
 
       if (bestRfactor < minError) 
 	{
