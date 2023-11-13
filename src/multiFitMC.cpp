@@ -16,52 +16,55 @@
 
 #include "multiFitMC.h"
 
-MultiFitMC::MultiFitMC(string inputfile)
+
+MultiFitMC::MultiFitMC(string inputFile)
 {
-  ifstream inputparameter;
-
-  inputparameter.open(inputfile.data(),ios::in);
-
-  if(inputparameter.fail())
-    { cout<<" Error opening the input parameter file.\n"<< inputfile.data() << " doesn't not exist."<<endl;
-      cout<<" CHECK FILENAME !\n";
-      cout<<" CHECK FILENAME !\n";
+    // input the parameters to initialize fitting
+  ifstream infoFile;
+  infoFile.open(inputFile.data(),ios::in);
+  if(infoFile.fail())
+    {
+      cerr<<" Error opening the input file to initialize the ensemble optimization using MC. \n";
+      cerr<<" Please check the file: " << inputFile << endl;
+      exit(0);
     }
-  inputparameter.ignore(256,'\n');
-  inputparameter.ignore(256,'\n');
-  inputparameter.ignore(256,'\n');
- 
-  inputparameter >> MCSteps; inputparameter.ignore(120,'\n');
-  cout << " The total number Monte Carlo steps is " << MCSteps<< endl;
+  cout << "\n Reading the input file for MC fitting: " << inputFile << endl;
 
-  inputparameter >> nprints; inputparameter.ignore(120,'\n');
-  cout << " The number steps for printing is " << nprints<< endl;
-
-  inputparameter >> MCSeed; inputparameter.ignore(120,'\n');
-  cout << " The seed for random number generator is " << MCSeed<< endl;
-
-  inputparameter >> minError; inputparameter.ignore(120,'\n');
-  cout << " The minimum R factor to stop simulation is " << minError << endl;
- 
-  inputparameter >> nmrExpFile; inputparameter.ignore(120,'\n');
-  cout << " The nmr data file from the experiments is " << nmrExpFile << endl;
-
-  inputparameter >> numNMRPoints; inputparameter.ignore(120,'\n');
-  cout << " The total number of NMR points is " << numNMRPoints << endl;
-
-  inputparameter >> nmrConfFile; inputparameter.ignore(120,'\n');
-  cout << " The nmr data file for all conformers is " << nmrConfFile << endl;
-
-  inputparameter >> numConfs; inputparameter.ignore(120,'\n');
-  cout << " The total number of conformers is " << numConfs << endl;
-
-  inputparameter >> rankCtrl; inputparameter.ignore(120,'\n');
-  cout << " The ranking criteria for the prediction list is " << rankCtrl << endl;
-
-  inputparameter >> randomMethod; inputparameter.ignore(120,'\n');
-  cout << " The random method for weighting is " << randomMethod << endl;
-
-  inputparameter.close();
+  string linein;
+  string lineHead;
+  istringstream ssin;
+  while( getline(infoFile, linein))
+    {
+      cout << linein << endl;
+      ssin.clear();
+      ssin.str(linein);
+      ssin >> lineHead;
+      if (lineHead == "#")
+	{continue;}
+      else if (lineHead == "MCSteps:")
+	{ ssin >> MCSteps; }
+      else if (lineHead == "nPrints:" )
+	{ ssin >> nPrints; }
+      else if (lineHead == "MCSeed:" )
+	{ ssin >> MCSeed; }
+      else if (lineHead == "minError:" )
+	{ ssin >> minError; }
+      else if (lineHead == "nmrExpFile:")
+	{ ssin >> nmrExpFile; }
+      else if (lineHead == "numNMRPoints:")
+	{ ssin >> numNMRPoints; }
+      else if (lineHead == "nmrConfFile:")
+	{ ssin >> nmrConfFile; }
+      else if (lineHead == "numConfs:")
+	{ ssin >> numConfs; }
+      else if (lineHead == "rankCtrl:")
+	{ ssin >> rankCtrl; }
+      else if (lineHead == "randomMethod:")
+	{ ssin >> randomMethod; }
+      else
+	{continue;}
+    }
+  infoFile.close();
 
   ifstream nmrConfInput;
 
@@ -166,8 +169,6 @@ void MultiFitMC::MonteCarloFit()
 	      else
 		probFactors[iconfs] = (static_cast<float>(rand())/RAND_MAX)*(1.0-sumProb);
 	      sumProb = sumProb + probFactors[iconfs];
-	  
-	      
 	      for (inmr = 0; inmr < numNMRPoints; inmr++)
 		{
 		  currCalcNMR[inmr] += probFactors[iconfs]*nmrConfInp[iconfs][inmr];
@@ -215,7 +216,7 @@ void MultiFitMC::MonteCarloFit()
 	  
 	}
 
-      if (istep%nprints == 0 ) cout << " MC step = " << istep << " best R factor = " << bestRfactor << endl;
+      if (istep % nPrints == 0 ) cout << " MC step = " << istep << " best R factor = " << bestRfactor << endl;
 
       if (bestRfactor < minError) 
 	{
