@@ -1,0 +1,13 @@
+#
+#  input file for the GeneticAlgorithmFit to find multi-structure solution from RDC data
+#
+MCSteps: 1000000              // maximum number of MC steps
+nPrints: 1000                 // number of steps for printing
+MCSeed:  11234                // seed for MC random number generator
+minError: 0.05                // minimum R factor for stop simulation
+nmrExpFile: RDCs_exp.dat      // file store experimental NMR data
+numNMRPoints:  15             // total number of NMR data points
+nmrConfFile: RDCs_sorted.dat  // pre-calculated nmr data from unique structures
+numConfs:  1026               // total number of unique structures
+rankCtrl: R                   // rank control, 'D': RMSD, 'N': normalized RMSD, "R": R factor
+randomMethod: 0               // random method for weighting
